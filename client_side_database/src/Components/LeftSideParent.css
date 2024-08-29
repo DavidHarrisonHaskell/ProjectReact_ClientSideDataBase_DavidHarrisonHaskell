@@ -1,0 +1,17 @@
+/* css that will take up the left side of the page and have rounded
+/* edges and a border. The width should be 50% of the page and the height should
+/* be 100% of the page. The border should be 1px solid black and the border-radius
+/* should be 10px. The div should float to the left. */
+/* The css should be applied to the div with the id of "left-side" */
+
+.left-side {
+    width: 50%; 
+    height: 100%; 
+    border-radius: 10px;
+    border: 1px solid black;
+    float: left;
+    margin-right : 5%;
+    margin-left : 5%;
+  }
+  
+  

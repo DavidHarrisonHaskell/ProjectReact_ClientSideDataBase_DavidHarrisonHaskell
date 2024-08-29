@@ -1,10 +1,15 @@
+import React from 'react'
+import './App.css'
+import LeftSideParent from './Components/LeftSideParent.jsx'
+import RightSideParent from './Components/RightSideParent.jsx'
 
-function App() {
+const App = () => {
 
   return (
-    <>
-      Hello, World!
-    </>
+    <div className="AppAppearance">
+      <LeftSideParent />
+      <RightSideParent />
+    </div>
   )
 }
 
