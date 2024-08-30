@@ -1,12 +1,15 @@
 import './LeftSideChild.css';
 
-const LeftSideChild = () => {
+const LeftSideChild = (props) => {
+
+    console.log("props.condition",props.condition)
+    const borderClassName = props.condition ? "LeftSideChild borderRed" : "LeftSideChild borderGreen";
 
     return (
-        <div className="LeftSideChild">
-            ID: <br />
-            Name: <br />
-            Email: <br />
+        <div className={borderClassName}>
+            ID: {props.user.id} <br />
+            Name: {props.user.name} <br />
+            Email: {props.user.email} <br />
             <div className="buttonContainer">
                 <button className="backgroundButton backgroundButtonOtherData">Other Data</button>
                 <div className="rightButtons">
