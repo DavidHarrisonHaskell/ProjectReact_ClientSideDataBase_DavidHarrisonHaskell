@@ -1,0 +1,105 @@
+.RightSideChild_Todos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 48%;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.todos {
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+.todo {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.newTodo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+    height: 200px;
+}
+
+.newTodo .inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 48%
+}
+
+.inputContainerRightButtons {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+.newTodo label {
+    margin-right: 10px;
+}
+
+
+
+.blueUnderlineTodos {
+    text-decoration: underline;
+    text-decoration-color: blue;
+}
+
+.buttonContainerTodos {
+    display: flex;
+    /* gap: 10px; */
+    align-items: center;
+}
+
+.newTodoLabel {
+    margin-bottom: 5px;
+}
+
+.buttonContainerTodos label {
+    margin: 0;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+.AddButtonTodos,
+.CancelButtonTodos {
+    background-color: yellow;
+    border: lightblue 1px solid;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 2px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    width: 70px
+}
+
+/* .CancelButtonTodos {
+    position: relative;
+} */
+
+.MarkCompletedButton {
+    background-color: yellow;
+    border: lightblue 1px solid;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    cursor: pointer;
+    /* padding: 5px; */
+    line-height: 1.5;
+    /* margin-bottom: 6px; */
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+}

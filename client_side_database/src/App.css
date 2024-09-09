@@ -1,4 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
 .AppAppearance {
     display: flex;
     height: 100vh;
+    width: 100vw;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+
+.leftSide,
+.rightSide {
+    flex: 1;
+    /* take up the same amount of space */
+    /* overflow: auto; */
+    /* contain the floated children */
+    /* box-sizing: border-box;  */
+    max-width: 48%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.rightSide {
+    display: none;
+    /* hide the right side */
+}
+
+.AppAppearance > .rightSide { /* only the right side that is a direct child of the container */
+    display: block;
+    /* show the right side */
 }

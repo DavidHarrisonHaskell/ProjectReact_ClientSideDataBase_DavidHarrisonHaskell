@@ -1,9 +1,8 @@
 .right-side {
-  width: 48%;
+  flex: 1;
+  min-height: 100vh;
   height: 100%;
   border-radius: 20px;
-  border: 1px solid black;
-  float: right;
-  margin-right: 5%;
-  margin-left: 5%;
+  /* border: 1px solid black; */
+  box-sizing: border-box;
 }

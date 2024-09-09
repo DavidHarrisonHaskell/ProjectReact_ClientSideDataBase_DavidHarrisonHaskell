@@ -1,24 +1,23 @@
-/* css that will take up the left side of the page and have rounded
+/* take up the left side of the page and have rounded
 /* edges and a border. The width should be 50% of the page and the height should
 /* be 100% of the page. The border should be 1px solid black and the border-radius
 /* should be 10px. The div should float to the left. */
 /* The css should be applied to the div with the id of "left-side" */
 
 .left-side {
-  width: 50%;
+  flex: 1;
   min-height: 100vh;
   /*take up the whole viewport at least*/
   border-radius: 20px;
   border: 1px solid black;
-  float: left;
-  margin-right: 5%;
-  margin-left: 5%;
+  margin: 0 2.5%;
   text-align: center;
-  padding: 10px;
-  box-sizing: border-box;
+  /* padding: 10px; */
+  /* box-sizing: border-box; */
   /*padding and border in the element's total width and height*/
   padding-bottom: 20px;
-  overflow: auto; /*contain the floated children */
+  overflow: auto;
+  /*contain the floated children */
 
 }
 

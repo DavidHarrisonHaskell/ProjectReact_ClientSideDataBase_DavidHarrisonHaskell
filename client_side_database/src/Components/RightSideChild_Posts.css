@@ -1,0 +1,48 @@
+.RightSideChild_Posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 48%;
+    width: 100%;
+    padding: 10px;
+}
+
+.posts {
+    border: 1px solid black;
+    overflow-y: auto;
+}
+
+.post {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+.blueUnderlinePosts {
+    text-decoration: underline;
+    text-decoration-color: blue;
+}
+
+.buttonContainerPosts {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.buttonContainerPosts label{
+    margin: 0;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+.AddButtonPosts {
+    background-color: yellow;
+    border: lightblue 1px solid;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 2px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    width: 70px
+  }
