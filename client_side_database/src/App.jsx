@@ -22,31 +22,31 @@ const App = () => {
     setUser_posts(user_posts)
   }
 
-  const update_user_todos = (todoId) => {
+  const update_user_todos = (todoId) => { //  updates the user todos
     const newTodos = user_todos.map(todo => todo.id === todoId ? { ...todo, completed: true } : todo)
     setUser_todos(newTodos)
   }
 
-  const addNewTodo = (newTodo) => {
+  const addNewTodo = (newTodo) => { //  updates the user todos
     const updatedTodos = [...user_todos, newTodo]
     setUser_todos(updatedTodos)
-  }
+  } 
   
-  const addNewPost = (newPost) => {
+  const addNewPost = (newPost) => { //  adds a new post
     console.log("new Post in the App.jsx", newPost)
     const updatedPosts = [...user_posts, newPost]
     setUser_posts(updatedPosts)
   }
 
-  const handleAllUsers = (users) => {
+  const handleAllUsers = (users) => { //  handles all users
     setAllUsers(users)
   }
 
-  const handleAllTodos = (allTodos) => {
+  const handleAllTodos = (allTodos) => { //  handles all todos
     setAllTodos(allTodos)
   }
 
-  const handleAllPosts = (allPosts) => {
+  const handleAllPosts = (allPosts) => { //  handles all posts
     setAllPosts(allPosts)
   }
 
