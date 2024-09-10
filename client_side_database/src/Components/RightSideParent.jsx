@@ -32,11 +32,9 @@ const RightSideComponent = (props) => {
         user_Id={props.user_Id}
         user_todos={props.user_todos}
         users={props.users}
-        showNewTodo={props.showNewTodo}
         allTodos={props.allTodos}
         callback_markCompleted={callback_markCompleted}
         callback_todoAdded={callback_todoAdded}
-        callback_cancelNewTodo={props.callback_cancelNewTodo}
       />
       <RightSideChild_Posts user_Id={props.user_Id} user_posts={props.user_posts} />
 

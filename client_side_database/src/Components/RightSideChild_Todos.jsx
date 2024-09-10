@@ -6,12 +6,8 @@ const RightSideChild_Todos = (props) => {
     const [NewTodoText, setNewTodoText] = useState("") // used to store the new todo text
     const [theNewTodo, setTheNewTodo] = useState({}) // used to store the new todo
 
-    const callback_markCompleted = (todoId) => {
-        props.callback_markCompleted(todoId)
-    }
-
     useEffect(() => {
-        console.log("heyyy im in the rightsidechild_todos", props.allTodos[props.allTodos.length - 1])
+        // console.log("heyyy im in the rightsidechild_todos", props.allTodos[props.allTodos.length - 1])
         setTheNewTodo({
             completed: false,
             id: props.allTodos.length + 1,
@@ -20,12 +16,10 @@ const RightSideChild_Todos = (props) => {
         });
     }, [props.user_todos, NewTodoText, props.user_Id, props.users, props.allTodos]);
 
-    useEffect(() => {
-        if (!props.showNewTodo) {
-            setNewTodo(false)
-            setNewTodoText("")
-        }
-    }, [props.showNewTodo, props.user_Id])
+    useEffect(() => { // when the user changes, reset the new todo div
+        setNewTodo(false)
+        setNewTodoText("")
+    }, [props.user_Id])
 
     const addNewTodo = () => {
         if (NewTodoText === "") {

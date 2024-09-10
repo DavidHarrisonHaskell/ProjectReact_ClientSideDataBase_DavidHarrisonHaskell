@@ -9,7 +9,6 @@ const App = () => {
   const [user_Id, setUser_Id] = useState(0)
   const [user_todos, setUser_todos] = useState([])
   const [user_posts, setUser_posts] = useState([])
-  const [showNewTodo, setShowNewTodo] = useState(false) // New state to manage the visibility of the "New Todo" window
   const [users, setUsers] = useState([])
   const [allTodos, setAllTodos] = useState([])
 
@@ -30,7 +29,6 @@ const App = () => {
     setUser_Id(user_Id)
     setUser_todos(user_todos)
     setUser_posts(user_posts)
-    setShowNewTodo(false)
   }
 
   const update_user_todos = (todoId) => {
@@ -77,7 +75,6 @@ const App = () => {
             allTodos={allTodos}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
-            callback_cancelNewTodo={() => setShowNewTodo(false)}
           />
         </div>
       )}
