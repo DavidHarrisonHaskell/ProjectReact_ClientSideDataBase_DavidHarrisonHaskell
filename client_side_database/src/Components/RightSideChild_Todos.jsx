@@ -7,14 +7,13 @@ const RightSideChild_Todos = (props) => {
     const [theNewTodo, setTheNewTodo] = useState({}) // used to store the new todo
 
     useEffect(() => {
-        // console.log("heyyy im in the rightsidechild_todos", props.allTodos[props.allTodos.length - 1])
         setTheNewTodo({
             completed: false,
             id: props.allTodos.length + 1,
             title: NewTodoText,
             userId: props.user_Id,
         });
-    }, [props.user_todos, NewTodoText, props.user_Id, props.users, props.allTodos]);
+    }, [props.user_todos, NewTodoText, props.user_Id, props.allUsers, props.allTodos]);
 
     useEffect(() => { // when the user changes, reset the new todo div
         setNewTodo(false)

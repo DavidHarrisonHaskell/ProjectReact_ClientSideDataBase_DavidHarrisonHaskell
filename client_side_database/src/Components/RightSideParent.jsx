@@ -15,13 +15,18 @@ const RightSideComponent = (props) => {
     // }
   }
   const callback_markCompleted = (todoId) => {
-    console.log(`yooooooo ${todoId} is completed`)
+    // console.log(`yooooooo ${todoId} is completed`)
     props.callback_markCompleted(todoId)
   }
 
   const callback_todoAdded = (newTodo) => {
-    console.log(`yooooooo ${newTodo.title} is added`)
+    // console.log(`yooooooo ${newTodo.title} is added`)
     props.callback_todoAdded(newTodo)
+  }
+
+  const callback_postAdded = (newPost) => {
+    // console.log(`yooooooo ${newPost.title}, ${newPost.id} is added`)
+    props.callback_postAdded(newPost)
   }
 
   return (
@@ -31,12 +36,18 @@ const RightSideComponent = (props) => {
       <RightSideChild_Todos
         user_Id={props.user_Id}
         user_todos={props.user_todos}
-        users={props.users}
+        allUsers={props.allUsers}
         allTodos={props.allTodos}
         callback_markCompleted={callback_markCompleted}
         callback_todoAdded={callback_todoAdded}
       />
-      <RightSideChild_Posts user_Id={props.user_Id} user_posts={props.user_posts} />
+      <RightSideChild_Posts
+        user_Id={props.user_Id}
+        user_posts={props.user_posts}
+        allUsers={props.allUsers}
+        allPosts={props.allPosts}
+        callback_postAdded={callback_postAdded}
+      />
 
     </div>
   );

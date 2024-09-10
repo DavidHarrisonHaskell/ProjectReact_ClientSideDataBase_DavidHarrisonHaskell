@@ -4,14 +4,36 @@ import "./RightSideChild_Posts.css";
 const RightSideChild_Posts = (props) => {
 
     const [newPost, setNewPost] = useState(true)
-    const [NewPostText, setNewPostText] = useState("")
+    const [NewTitleText, setNewTitleText] = useState("")
     const [NewBodyText, setNewBodyText] = useState("")
+    const [theNewPost, setTheNewPost] = useState({})
+
+    useEffect(() => {
+        setTheNewPost({
+            userId: props.user_Id,
+            id: props.allPosts.length + 1,
+            title: NewTitleText,
+            body: NewBodyText,
+        });
+    }, [props.user_posts, NewTitleText, NewBodyText, props.user_Id, props.allUsers, props.allPosts]);
 
     useEffect(() => {
         setNewPost(false)
-        setNewPostText("")
+        setNewTitleText("")
         setNewBodyText("")
     }, [props.user_Id])
+
+    const addNewPost = () => {
+        if (NewTitleText === "" || NewBodyText === "") {
+            alert("Please enter a title and body for the new post")
+            return
+        } else {
+            props.callback_postAdded(theNewPost)
+            setNewBodyText("")
+            setNewTitleText("")
+            setNewPost(!newPost)
+        }
+    }
 
 
     return (
@@ -23,7 +45,7 @@ const RightSideChild_Posts = (props) => {
                     <div className="newPost">
                         <div className="inputContainerPost Title">
                             <label >Title:</label>
-                            <input type="text" onChange={e => setNewPostText(e.target.value)} />
+                            <input type="text" onChange={e => setNewTitleText(e.target.value)} />
                         </div>
                         <div className="inputContainerPost Body">
                             <label>Body:</label>
@@ -32,7 +54,7 @@ const RightSideChild_Posts = (props) => {
                     </div>
                     <div className="inputContainerRightButtonsPosts">
                         <button className="CancelButtonPosts" onClick={() => setNewPost(!newPost)}>Cancel</button>
-                        <button className="AddButtonPosts">Add</button>
+                        <button className="AddButtonPosts" onClick={addNewPost}>Add</button>
                     </div>
                 </>
                 ) : (
