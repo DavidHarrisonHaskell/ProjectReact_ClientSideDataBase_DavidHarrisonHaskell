@@ -10,6 +10,7 @@ const LeftSideParent = (props) => {
     const [search, setSearch] = useState("");
     const [activeUserId, setActiveUserId] = useState(null);
     const [initialFetchDone, setInitialFetchDone] = useState(false);
+    const [newUser, setNewUser] = useState(false)
 
 
     useEffect(() => {
@@ -47,7 +48,7 @@ const LeftSideParent = (props) => {
             }
 
             // check if a new post has been added
-           if (props.user_posts.length > posts.filter(post => post.userId === props.user_Id).length) {
+            if (props.user_posts.length > posts.filter(post => post.userId === props.user_Id).length) {
                 const newPost = props.user_posts[props.user_posts.length - 1]
                 const updatedPosts = [...posts, newPost]
                 setPosts(updatedPosts)
@@ -96,12 +97,16 @@ const LeftSideParent = (props) => {
         updateUsers()
     }, [users, todos])
 
+    useEffect(() => { // makes a callback to the parent component to show the new user component
+        props.callback_newUser(newUser)
+    }, [newUser])
+
     const filteredUsers = users.filter(user => search === "" || user.name.includes(search) || user.email.includes(search));
 
     return (
         <div className="left-side">
             Search <input type="text" id="search" name="search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: "2%" }} />
-            <button className="backgroundButton">Add</button>
+            <button className="backgroundButton" onClick={() => setNewUser(!newUser)}>Add</button>
             {
                 filteredUsers.map((user) => {
                     const userPosts = posts.filter(post => post.userId === user.id)

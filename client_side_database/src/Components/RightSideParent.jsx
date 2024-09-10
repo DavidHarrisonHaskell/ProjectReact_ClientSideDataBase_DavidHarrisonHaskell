@@ -29,26 +29,30 @@ const RightSideComponent = (props) => {
     props.callback_postAdded(newPost)
   }
 
+
   return (
 
     <div className="right-side">
       <button onClick={testRightSide}>Test Right</button><br />
-      <RightSideChild_Todos
-        user_Id={props.user_Id}
-        user_todos={props.user_todos}
-        allUsers={props.allUsers}
-        allTodos={props.allTodos}
-        callback_markCompleted={callback_markCompleted}
-        callback_todoAdded={callback_todoAdded}
-      />
-      <RightSideChild_Posts
-        user_Id={props.user_Id}
-        user_posts={props.user_posts}
-        allUsers={props.allUsers}
-        allPosts={props.allPosts}
-        callback_postAdded={callback_postAdded}
-      />
-
+      {!props.newUser && ( //  if the new user is false, display the right side child components
+        <>
+          <RightSideChild_Todos
+            user_Id={props.user_Id}
+            user_todos={props.user_todos}
+            allUsers={props.allUsers}
+            allTodos={props.allTodos}
+            callback_markCompleted={callback_markCompleted}
+            callback_todoAdded={callback_todoAdded}
+          />
+          <RightSideChild_Posts
+            user_Id={props.user_Id}
+            user_posts={props.user_posts}
+            allUsers={props.allUsers}
+            allPosts={props.allPosts}
+            callback_postAdded={callback_postAdded}
+          />
+        </>
+      )}
     </div>
   );
 }

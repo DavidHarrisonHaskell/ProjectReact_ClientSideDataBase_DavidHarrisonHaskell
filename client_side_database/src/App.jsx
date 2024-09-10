@@ -12,6 +12,7 @@ const App = () => {
   const [users, setAllUsers] = useState([])
   const [allTodos, setAllTodos] = useState([])
   const [allPosts, setAllPosts] = useState([])
+  const [newUser, setNewUser] = useState(false)
 
   const displayRightSide = (RightSideValue, user_Id, user_todos, user_posts) => {
     // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(user_todos)) // Save the user's todos in the local storage
@@ -50,6 +51,10 @@ const App = () => {
     setAllPosts(allPosts)
   }
 
+  const handleNewUser = (newUser) => { //  handles a new user
+    setNewUser(newUser)
+  }
+
   return (
     <div className="AppAppearance">
       {/* <button onclick={test}>Click</button>  */}
@@ -62,6 +67,7 @@ const App = () => {
           callback_allUsers={handleAllUsers}
           callback_allTodos={handleAllTodos}
           callback_allPosts={handleAllPosts}
+          callback_newUser={handleNewUser}
         />
       </div>
       {RightSideValue && (
@@ -73,6 +79,7 @@ const App = () => {
             allUsers={users}
             allTodos={allTodos}
             allPosts={allPosts}
+            newUser={newUser}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
             callback_postAdded={addNewPost}
