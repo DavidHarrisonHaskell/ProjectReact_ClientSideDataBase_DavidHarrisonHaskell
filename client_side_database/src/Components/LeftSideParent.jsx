@@ -14,8 +14,8 @@ const LeftSideParent = (props) => {
     // const [showRightSide, setShowRightSide] = useState(false); // used to show the right side of the application
 
 
-    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(() => { //  fetches the data
+        const fetchData = async () => { 
             const { data: usersData } = await getAllUsers()
             setUsers(usersData)
             const { data: todosData } = await getAlltodos()
