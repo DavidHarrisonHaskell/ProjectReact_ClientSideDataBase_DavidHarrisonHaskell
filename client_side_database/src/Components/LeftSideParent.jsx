@@ -29,44 +29,31 @@ const LeftSideParent = (props) => {
     }, [])
 
 
-    // useEffect(() => {
-    //     if (initialFetchDone) {
-    //         setTodos(props.todos)
-    //         setPosts(posts)
-    //         console.log("LeftSideParent updated form App.jsx")
-    //     }
-    // }, [props.users, props.todos, posts, initialFetchDone])
-
     useEffect(() => {
         const updateLeftSideParent = () => { //  updates the left side parent component
-            let specificUserTodos = todos.map(todo => { //  maps through the todos
-                if (todo.userId === props.user_Id) { //  checks if the user id of the todo is equal to the user id of the user
-                    const updatedTodo = props.user_todos.find(user_todo => user_todo.id === todo.id) //  finds the todo that has the same id as the todo
-                    return updatedTodo || todo //  returns the updated todo
-                }
-                else { //  if the user id of the todo is not equal to the user id of the user
-                    return todo //  returns the todo
-                }
-            });
+
 
             // check if a new todo has been added
             if (props.user_todos.length > todos.filter(todo => todo.userId === props.user_Id).length) {
-                // specificUserTodos = todos.map(todo => { //  maps through the todos
-                //     // const propsTodos = props.user_todos.filter(propsTodo => propsTodo.userId === todo. )
-                //     if (todo.userId === props.user_Id) { //  checks if the user id of the todo is equal to the user id of the user
-                //         const propsTodos = props.user_todos.filter(user_todo => user_todo.id === todo.id) //  finds the todo that has the same id as the todo
-                //         return updatedTodo || todo //  returns the updated todo
-                //     }
-                //     else { //  if the user id of the todo is not equal to the user id of the user
-                //         return todo //  returns the todo
-                //     }
-                // });
-                console.log("props.user_todos", props.user_todos, "props.user_Id", props.user_Id)
-                console.log("current todos", todos)
+                const newTodo = props.user_todos[props.user_todos.length - 1]
+                const updatedTodos = [...todos, newTodo]
+                setTodos(updatedTodos)
+                // console.log("last todo", typeof (todos[todos.length - 1].id))
+                // console.log("new todo", props.user_todos[props.user_todos.length - 1])
+                // console.log("props.user_todos", props.user_todos, "props.user_Id", props.user_Id)
+                // console.log("todos", todos)
             } else {
-
                 console.log("new Todo not added")
-                setTodos(specificUserTodos)
+                let specificUserTodos = todos.map(todo => { //  maps through the todos
+                    if (todo.userId === props.user_Id) { //  checks if the user id of the todo is equal to the user id of the user
+                        const updatedTodo = props.user_todos.find(user_todo => user_todo.id === todo.id) //  finds the todo that has the same id as the todo
+                        return updatedTodo || todo //  returns the updated todo
+                    }
+                    else { //  if the user id of the todo is not equal to the user id of the user
+                        return todo //  returns the todo
+                    }
+                }); 
+                setTodos(specificUserTodos) 
             }
         }
         updateLeftSideParent()
@@ -93,6 +80,14 @@ const LeftSideParent = (props) => {
         // console.log("RightSideValue: ", RightSideValue, " User_Id: ", user_Id, " User_Todos: ", user_todos, " User_Posts: ", user_posts)
     }
 
+    useEffect(() => {
+        const updateUsers = () => {
+            props.callback_users(users)
+            props.callback_allTodos(todos)
+        }
+        updateUsers()
+    }, [users, todos])
+
     const filteredUsers = users.filter(user => search === "" || user.name.includes(search) || user.email.includes(search));
 
     return (
@@ -108,6 +103,7 @@ const LeftSideParent = (props) => {
                     return (<LeftSideChild
                         key={user.id}
                         user={user}
+                        // callback_users={() => props.callback_users(users)}
                         userTodos={userTodos}
                         userPosts={userPosts}
                         condition={borderColorCondition}

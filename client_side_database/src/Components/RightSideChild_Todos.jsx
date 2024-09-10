@@ -11,13 +11,14 @@ const RightSideChild_Todos = (props) => {
     }
 
     useEffect(() => {
+        console.log("heyyy im in the rightsidechild_todos", props.allTodos[props.allTodos.length - 1])
         setTheNewTodo({
             completed: false,
-            id: props.user_todos.length + 1,
+            id: props.allTodos.length + 1,
             title: NewTodoText,
             userId: props.user_Id,
         });
-    }, [props.user_todos, NewTodoText, props.user_Id]);
+    }, [props.user_todos, NewTodoText, props.user_Id, props.users, props.allTodos]);
 
     useEffect(() => {
         if (!props.showNewTodo) {
@@ -44,10 +45,10 @@ const RightSideChild_Todos = (props) => {
                 <>
                     <label className="newTodoLabel"> New Todo - User {props.user_Id}</label>
                     <div className="newTodo">
-                        <div className="inputContainer">
+                        <div className="inputContainerTodo">
                             <label className="blueUnderline">Title:</label>
                             <input type="text" onChange={e => setNewTodoText(e.target.value)} />
-                        </div><br /><br />
+                        </div>
                         <div className="inputContainerRightButtons">
                             <button className="CancelButtonTodos" onClick={() => setNewTodo(!newTodo)}>Cancel</button>
                             <button className="AddButtonTodos" onClick={addNewTodo}>Add</button>

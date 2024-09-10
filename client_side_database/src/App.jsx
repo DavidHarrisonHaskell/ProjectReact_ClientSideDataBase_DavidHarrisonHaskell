@@ -10,7 +10,8 @@ const App = () => {
   const [user_todos, setUser_todos] = useState([])
   const [user_posts, setUser_posts] = useState([])
   const [showNewTodo, setShowNewTodo] = useState(false) // New state to manage the visibility of the "New Todo" window
-
+  const [users, setUsers] = useState([])
+  const [allTodos, setAllTodos] = useState([])
 
   // useEffect(() => {
   //   localStorage.clear()
@@ -43,11 +44,28 @@ const App = () => {
     setUser_todos(updatedTodos)
     // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(updatedTodos)) // Save the user's todos in the local storage
   }
+
+  const handleUsers = (users) => {
+    setUsers(users)
+    console.log("test run", users)
+  }
+
+  const handleAllTodos = (allTodos) => {
+    setAllTodos(allTodos)
+  }
+
   return (
     <div className="AppAppearance">
       {/* <button onclick={test}>Click</button>  */}
       <div className="leftSide">
-        <LeftSideParent user_Id={user_Id} user_todos={user_todos} user_posts={user_posts} callback_displayRightSide={displayRightSide} />
+        <LeftSideParent
+          user_Id={user_Id}
+          user_todos={user_todos}
+          user_posts={user_posts}
+          callback_displayRightSide={displayRightSide}
+          callback_users={handleUsers}
+          callback_allTodos={handleAllTodos}
+        />
       </div>
       {RightSideValue && (
         <div className="rightSide">
@@ -55,6 +73,8 @@ const App = () => {
             user_Id={user_Id}
             user_todos={user_todos}
             user_posts={user_posts}
+            users={users}
+            allTodos={allTodos}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
             callback_cancelNewTodo={() => setShowNewTodo(false)}

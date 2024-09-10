@@ -29,7 +29,7 @@
     height: 200px;
 }
 
-.newTodo .inputContainer {
+.newTodo .inputContainerTodo {
     display: flex;
     justify-content: center;
     align-items: center;
