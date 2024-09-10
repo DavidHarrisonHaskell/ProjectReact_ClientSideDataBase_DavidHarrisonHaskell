@@ -13,6 +13,7 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [allTodos, setAllTodos] = useState([])
   const [allPosts, setAllPosts] = useState([])
+  const [newUser, setNewUser] = useState(false)
 
   // useEffect(() => {
   //   localStorage.clear()
@@ -63,7 +64,11 @@ const App = () => {
     const updatedPosts = [...user_posts, newPost]
     setUser_posts(updatedPosts)
   }
-  
+
+  const handleNewUser = (newUser) => {
+    setNewUser(newUser)
+  }
+
   return (
     <div className="AppAppearance">
       {/* <button onclick={test}>Click</button>  */}
@@ -72,6 +77,7 @@ const App = () => {
           user_Id={user_Id}
           user_todos={user_todos}
           user_posts={user_posts}
+          callback_newUser={handleNewUser}
           callback_displayRightSide={displayRightSide}
           callback_allUsers={handleAllUsers}
           callback_allTodos={handleAllTodos}
@@ -87,6 +93,7 @@ const App = () => {
             allUsers={users}
             allTodos={allTodos}
             allPosts={allPosts}
+            newUser={newUser}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
             callback_cancelNewTodo={() => setShowNewTodo(false)}

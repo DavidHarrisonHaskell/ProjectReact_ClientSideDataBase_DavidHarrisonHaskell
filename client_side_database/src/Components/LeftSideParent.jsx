@@ -10,6 +10,7 @@ const LeftSideParent = (props) => {
     const [search, setSearch] = useState("");
     const [activeUserId, setActiveUserId] = useState(null);
     const [initialFetchDone, setInitialFetchDone] = useState(false);
+    const [newUser, setNewUser] = useState(false); // New state to manage the visibility of the "New User" window
     // const [showRightSide, setShowRightSide] = useState(false); // used to show the right side of the application
 
 
@@ -108,12 +109,19 @@ const LeftSideParent = (props) => {
         updateUsers()
     }, [users, todos, posts])
 
+    const handleNewUser = () => {
+        console.log("newUser: ", !newUser)
+        props.callback_newUser(newUser)
+        setNewUser(!newUser)
+
+    }
+
     const filteredUsers = users.filter(user => search === "" || user.name.includes(search) || user.email.includes(search));
 
     return (
         <div className="left-side">
             Search <input type="text" id="search" name="search" onChange={(e) => setSearch(e.target.value)} style={{ marginRight: "2%" }} />
-            <button className="backgroundButton">Add</button>
+            <button className="backgroundButton" onClick={handleNewUser}>Add</button>
             {
                 filteredUsers.map((user) => {
                     const userPosts = posts.filter(post => post.userId === user.id)
@@ -132,6 +140,7 @@ const LeftSideParent = (props) => {
                         callback_deleteUser={deleteUser}
                         callback_updateUser={updateUser}
                         callback_displayRightSide={displayRightSide}
+                        callback_newUser={handleNewUser}
                     />)  // key is used to uniquely identify each child 
                 })
             }
