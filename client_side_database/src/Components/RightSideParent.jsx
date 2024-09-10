@@ -53,6 +53,28 @@ const RightSideComponent = (props) => {
           />
         </>
       )}
+
+      {
+        props.newUser && ( //  if the new user is true, display the new user component
+          <div className="newUser">
+            <label className="newUserLabel"> New User</label>
+            <div className="newUser">
+              <div className="inputContainer">
+                <label>Name:</label>
+                <input type="text" />
+              </div>
+              <div className="inputContainer">
+                <label>Email:</label>
+                <input type="text" />
+              </div>
+            </div>
+            <div className="inputContainerRightButtons">
+              <button className="CancelButton" onClick={() => props.callback_newUser(!props.newUser)}>Cancel</button>
+              <button className="AddButton" onClick={() => props.callback_newUser(!props.newUser)}>Add</button>
+            </div>
+          </div>
+        )
+      }
     </div>
   );
 }
