@@ -1,8 +1,47 @@
 .right-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex: 1;
   min-height: 100vh;
   height: 100%;
   border-radius: 20px;
   /* border: 1px solid black; */
   box-sizing: border-box;
+  width: 100%;
+}
+
+.newUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  margin: 2%;
+  border: 1px solid black;
+  padding: 20px;
+  height: 20%;
+  width: 80%;
+}
+
+.newUserLabel {
+align-self: flex-start;
+text-align: left;
+margin-left: 80px;
+}
+
+.newUser label {
+  text-decoration: underline;
+  text-decoration-color: blue;
+  width: 50px;
+}
+
+.newUser>span {
+  margin-bottom: 10px;
+}
+
+.newUser>span:last-child {
+  /* apply to the last span that is a direct child of LeftSideChild */
+  margin-bottom: 0px;
 }

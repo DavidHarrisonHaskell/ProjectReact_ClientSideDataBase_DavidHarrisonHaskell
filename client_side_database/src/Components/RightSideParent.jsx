@@ -34,6 +34,31 @@ const RightSideComponent = (props) => {
 
     <div className="right-side">
       <button onClick={testRightSide}>Test Right</button><br />
+
+      {
+
+        props.newUser && ( //  if the new user is true, display the new user component
+          <>
+            <label className="newUserLabel"> Add New User</label>
+            <div className="newUser">
+              <span>
+                <label>Name:</label>&nbsp;
+                <input type="text" />
+              </span>
+              <span>
+                <label>Email:</label>&nbsp;
+                <input type="text" />
+              </span>
+              <div className="inputContainerRightButtons">
+                <button className="CancelButton" onClick={() => props.callback_newUser(false)}>Cancel</button>
+                <button className="AddButton" onClick={() => props.callback_newUser(false)}>Add</button>
+              </div>
+            </div>
+
+          </>
+        )
+      }
+
       {!props.newUser && ( //  if the new user is false, display the right side child components
         <>
           <RightSideChild_Todos
@@ -54,28 +79,8 @@ const RightSideComponent = (props) => {
         </>
       )}
 
-      {
-        props.newUser && ( //  if the new user is true, display the new user component
-          <div className="newUser">
-            <label className="newUserLabel"> New User</label>
-            <div className="newUser">
-              <div className="inputContainer">
-                <label>Name:</label>
-                <input type="text" />
-              </div>
-              <div className="inputContainer">
-                <label>Email:</label>
-                <input type="text" />
-              </div>
-            </div>
-            <div className="inputContainerRightButtons">
-              <button className="CancelButton" onClick={() => props.callback_newUser(!props.newUser)}>Cancel</button>
-              <button className="AddButton" onClick={() => props.callback_newUser(!props.newUser)}>Add</button>
-            </div>
-          </div>
-        )
-      }
-    </div>
+
+    </div >
   );
 }
 export default RightSideComponent;

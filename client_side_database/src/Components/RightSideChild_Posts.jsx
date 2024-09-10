@@ -51,11 +51,12 @@ const RightSideChild_Posts = (props) => {
                             <label>Body:</label>
                             <input type="text" onChange={e => setNewBodyText(e.target.value)} />
                         </div>
+                        <div className="inputContainerRightButtonsPosts">
+                            <button className="CancelButtonPosts" onClick={() => setNewPost(!newPost)}>Cancel</button>
+                            <button className="AddButtonPosts" onClick={addNewPost}>Add</button>
+                        </div>
                     </div>
-                    <div className="inputContainerRightButtonsPosts">
-                        <button className="CancelButtonPosts" onClick={() => setNewPost(!newPost)}>Cancel</button>
-                        <button className="AddButtonPosts" onClick={addNewPost}>Add</button>
-                    </div>
+
                 </>
                 ) : (
                     <>

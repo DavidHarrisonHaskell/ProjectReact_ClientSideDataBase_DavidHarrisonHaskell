@@ -9,10 +9,20 @@ const App = () => {
   const [user_Id, setUser_Id] = useState(0)
   const [user_todos, setUser_todos] = useState([])
   const [user_posts, setUser_posts] = useState([])
-  const [users, setAllUsers] = useState([])
+  const [showNewTodo, setShowNewTodo] = useState(false) // New state to manage the visibility of the "New Todo" window
+  const [users, setUsers] = useState([])
   const [allTodos, setAllTodos] = useState([])
   const [allPosts, setAllPosts] = useState([])
-  const [newUser, setNewUser] = useState(false)
+
+  // useEffect(() => {
+  //   localStorage.clear()
+  // }, [])
+
+  // useEffect(() => {
+  //   const savedTodos = JSON.parse(localStorage.getItem(`user_${user_Id}_todos`)) || [] // Get the user's todos from the local storage
+  //   // or an empty array if there are no todos saved
+  //   setUser_todos(savedTodos)
+  // }, [user_Id])
 
   const displayRightSide = (RightSideValue, user_Id, user_todos, user_posts) => {
     // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(user_todos)) // Save the user's todos in the local storage
@@ -21,40 +31,39 @@ const App = () => {
     setUser_Id(user_Id)
     setUser_todos(user_todos)
     setUser_posts(user_posts)
+    setShowNewTodo(false)
   }
 
-  const update_user_todos = (todoId) => { //  updates the user todos
+  const update_user_todos = (todoId) => {
     const newTodos = user_todos.map(todo => todo.id === todoId ? { ...todo, completed: true } : todo)
     setUser_todos(newTodos)
+    // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(newTodos)) // Save the user's todos in the local storage
   }
 
-  const addNewTodo = (newTodo) => { //  updates the user todos
+  const addNewTodo = (newTodo) => {
     const updatedTodos = [...user_todos, newTodo]
     setUser_todos(updatedTodos)
-  } 
-  
-  const addNewPost = (newPost) => { //  adds a new post
-    console.log("new Post in the App.jsx", newPost)
-    const updatedPosts = [...user_posts, newPost]
-    setUser_posts(updatedPosts)
+    // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(updatedTodos)) // Save the user's todos in the local storage
   }
 
-  const handleAllUsers = (users) => { //  handles all users
-    setAllUsers(users)
+  const handleAllUsers = (users) => {
+    setUsers(users)
+    console.log("test run", users)
   }
 
-  const handleAllTodos = (allTodos) => { //  handles all todos
+  const handleAllTodos = (allTodos) => {
     setAllTodos(allTodos)
   }
 
-  const handleAllPosts = (allPosts) => { //  handles all posts
+  const handleAllPosts = (allPosts) => {
     setAllPosts(allPosts)
   }
 
-  const handleNewUser = (newUser) => { //  handles a new user
-    setNewUser(newUser)
+  const addNewPost = (newPost) => {
+    const updatedPosts = [...user_posts, newPost]
+    setUser_posts(updatedPosts)
   }
-
+  
   return (
     <div className="AppAppearance">
       {/* <button onclick={test}>Click</button>  */}
@@ -67,7 +76,6 @@ const App = () => {
           callback_allUsers={handleAllUsers}
           callback_allTodos={handleAllTodos}
           callback_allPosts={handleAllPosts}
-          callback_newUser={handleNewUser}
         />
       </div>
       {RightSideValue && (
@@ -79,9 +87,9 @@ const App = () => {
             allUsers={users}
             allTodos={allTodos}
             allPosts={allPosts}
-            newUser={newUser}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
+            callback_cancelNewTodo={() => setShowNewTodo(false)}
             callback_postAdded={addNewPost}
           />
         </div>

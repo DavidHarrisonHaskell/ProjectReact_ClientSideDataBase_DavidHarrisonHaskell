@@ -73,7 +73,7 @@ const LeftSideChild = (props) => {
 
     const handleUser = () => {
         if (props.activeUserId === props.user.id) {
-            setShowRightSide(previousState => !previousState)
+            setShowRightSide(prevState => !prevState)
         } else {
             setShowRightSide(true)
         }
