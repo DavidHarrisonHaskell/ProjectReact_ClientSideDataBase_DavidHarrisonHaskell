@@ -37,7 +37,7 @@ const RightSideComponent = (props) => {
 
       {
 
-        props.newUser && ( //  if the new user is true, display the new user component
+        props.newUser && !props.showActiveUserData && ( //  if the new user is true, display the new user component
           <>
             <label className="newUserLabel"> Add New User</label>
             <div className="newUser">
@@ -59,7 +59,7 @@ const RightSideComponent = (props) => {
         )
       }
 
-      {!props.newUser && ( //  if the new user is false, display the right side child components
+      {!props.newUser && props.showActiveUserData && ( //  if the new user is false, display the right side child components
         <>
           <RightSideChild_Todos
             user_Id={props.user_Id}

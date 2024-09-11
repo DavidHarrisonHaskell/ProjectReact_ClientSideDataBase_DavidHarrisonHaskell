@@ -15,7 +15,7 @@ const LeftSideParent = (props) => {
 
 
     useEffect(() => { //  fetches the data
-        const fetchData = async () => { 
+        const fetchData = async () => {
             const { data: usersData } = await getAllUsers()
             setUsers(usersData)
             const { data: todosData } = await getAlltodos()
@@ -95,9 +95,10 @@ const LeftSideParent = (props) => {
         setUsers(newUsers)
     }
 
-    const displayRightSide = (RightSideValue, user_Id, user_todos, user_posts) => {
-        props.callback_displayRightSide(RightSideValue, user_Id, user_todos, user_posts)
-        // console.log("RightSideValue: ", RightSideValue, " User_Id: ", user_Id, " User_Todos: ", user_todos, " User_Posts: ", user_posts)
+    // const displayRightSide = (RightSideValue, user_Id, user_todos, user_posts) => { //!!!!
+    const displayRightSide = (showActiveUserData, user_Id, user_todos, user_posts) => {
+        // props.callback_displayRightSide(RightSideValue, user_Id, user_todos, user_posts) //!!!!
+        props.callback_displayRightSide(showActiveUserData, user_Id, user_todos, user_posts)
     }
 
     useEffect(() => {
@@ -110,11 +111,19 @@ const LeftSideParent = (props) => {
     }, [users, todos, posts])
 
     const handleNewUser = () => {
-        console.log("newUser: ", !newUser)
-        props.callback_newUser(newUser)
-        setNewUser(!newUser)
-
+        setActiveUserId(null)
+        props.callback_showActiveUserData(false)
+        setNewUser(true);
     }
+    
+    const callback_handleNewUser = (newUser) => {
+        setNewUser(newUser)
+    }
+
+    useEffect(() => {  // listens for changes in the new user state
+        props.callback_newUser(newUser) //  sends the new user state to the parent component
+    }, [newUser])
+
 
     const filteredUsers = users.filter(user => search === "" || user.name.includes(search) || user.email.includes(search));
 
@@ -136,11 +145,12 @@ const LeftSideParent = (props) => {
                         userPosts={userPosts}
                         condition={borderColorCondition}
                         activeUserId={activeUserId} //  sends the active user id to the child component
+                        showActiveUserData={props.showActiveUserData}
                         callback_activeUserId={setActiveUserId} //  recieves the active user id from the child component
                         callback_deleteUser={deleteUser}
                         callback_updateUser={updateUser}
                         callback_displayRightSide={displayRightSide}
-                        callback_newUser={handleNewUser}
+                        callback_newUser={callback_handleNewUser}
                     />)  // key is used to uniquely identify each child 
                 })
             }

@@ -6,6 +6,7 @@ import RightSideParent from './Components/RightSideParent.jsx'
 
 const App = () => {
   const [RightSideValue, setRightSideValue] = useState(false)
+  const [showActiveUserData, setShowActiveUserData] = useState(false)
   const [user_Id, setUser_Id] = useState(0)
   const [user_todos, setUser_todos] = useState([])
   const [user_posts, setUser_posts] = useState([])
@@ -25,10 +26,9 @@ const App = () => {
   //   setUser_todos(savedTodos)
   // }, [user_Id])
 
-  const displayRightSide = (RightSideValue, user_Id, user_todos, user_posts) => {
-    // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(user_todos)) // Save the user's todos in the local storage
-
-    setRightSideValue(RightSideValue)
+  const displayRightSide = (showActiveUserData, user_Id, user_todos, user_posts) => {
+    // setRightSideValue(RightSideValue) //!!!!
+    setShowActiveUserData(showActiveUserData)
     setUser_Id(user_Id)
     setUser_todos(user_todos)
     setUser_posts(user_posts)
@@ -77,14 +77,18 @@ const App = () => {
           user_Id={user_Id}
           user_todos={user_todos}
           user_posts={user_posts}
+          showActiveUserData={showActiveUserData}
           callback_newUser={handleNewUser}
           callback_displayRightSide={displayRightSide}
           callback_allUsers={handleAllUsers}
           callback_allTodos={handleAllTodos}
           callback_allPosts={handleAllPosts}
+          callback_showActiveUserData={setShowActiveUserData}
         />
       </div>
-      {RightSideValue && (
+      {/* {RightSideValue && ( */}
+      {/* {showActiveUserData && ( !!!! */}
+      {(
         <div className="rightSide">
           <RightSideParent
             user_Id={user_Id}
@@ -94,6 +98,7 @@ const App = () => {
             allTodos={allTodos}
             allPosts={allPosts}
             newUser={newUser}
+            showActiveUserData={showActiveUserData}
             callback_markCompleted={update_user_todos}
             callback_todoAdded={addNewTodo}
             callback_cancelNewTodo={() => setShowNewTodo(false)}
@@ -101,6 +106,28 @@ const App = () => {
           />
         </div>
       )}
+
+      {/* {
+        newUser && (
+          <div className='rightSide'>
+            <label className="newUserLabel"> Add New User</label>
+            <div className="newUser">
+              <span>
+                <label>Name:</label>&nbsp;
+                <input type="text" />
+              </span>
+              <span>
+                <label>Email:</label>&nbsp;
+                <input type="text" />
+              </span>
+              <div className="inputContainerRightButtons">
+                <button className="CancelButton" onClick={() => setNewUser(false)}>Cancel</button>
+                <button className="AddButton" onClick={() => setNewUser(false)}>Add</button>
+              </div>
+            </div>
+          </div>
+        )
+      } */}
     </div>
   )
 }

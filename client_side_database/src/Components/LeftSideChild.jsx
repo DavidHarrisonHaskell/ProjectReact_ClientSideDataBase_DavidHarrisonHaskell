@@ -15,9 +15,14 @@ const LeftSideChild = (props) => {
     const [showRightSide, setShowRightSide] = useState(false); // used to show the right side of the application
     const [isFirstRender, setIsFirstRender] = useState(true); // used to check if it is the first render
     const borderClassName = props.condition(props.user.id) ? "LeftSideChild borderRed" : "LeftSideChild borderGreen"; //  checks the border color condition
+    const [showActiveUserData, setShowActiveUserData] = useState(false); // used to show the active user's data
     // if the condition is true, the border color is red, else, the border color is green
 
-    const backgroundColor = props.activeUserId === props.user.id && showRightSide ? "orangeBackground" : "";
+    // const backgroundColor = props.activeUserId === props.user.id && showRightSide ? "orangeBackground" : ""; // !!!!
+    const backgroundColorCondition = props.activeUserId === props.user.id && props.showActiveUserData
+    const backgroundColor = backgroundColorCondition ? "orangeBackground" : "";
+
+    
     // console.log("TODOS for USERID: ",props.user.id," ",props.userTodos)
     // console.log("POSTS for USERID:", props.user.id," ", props.userPosts)
     // the console.log statements above are used to check the todos and posts for each user
@@ -73,10 +78,21 @@ const LeftSideChild = (props) => {
 
     const handleUser = () => {
         if (props.activeUserId === props.user.id) {
-            setShowRightSide(prevState => !prevState)
+            // setShowRightSide(prevState => !prevState) //!!!!
+            if (props.activeUserId !== null) {
+            setShowActiveUserData(prevState => !prevState)
+            } else {
+                setShowActiveUserData(true)
+            }
+            props.callback_newUser(false)
         } else {
-            setShowRightSide(true)
+            // setShowRightSide(true) //!!!!
+            setShowActiveUserData(true)
+            props.callback_newUser(false)
         }
+        // if (!backgroundColorCondition) {
+        //     setShowActiveUserData(true)
+        // }
         props.callback_activeUserId(props.user.id);
     }
 
@@ -110,9 +126,11 @@ const LeftSideChild = (props) => {
 
     useEffect(() => { //  displays the right side of the application
         if (props.activeUserId === props.user.id) {
-            props.callback_displayRightSide(showRightSide, props.user.id, props.userTodos, props.userPosts);
+            // props.callback_displayRightSide(showRightSide, props.user.id, props.userTodos, props.userPosts); //!!!!
+            props.callback_displayRightSide(showActiveUserData, props.user.id, props.userTodos, props.userPosts);
         }
-    }, [showRightSide, props.activeUserId, props.user.id])
+    // }, [showRightSide, props.activeUserId, props.user.id]) //!!!!
+    }, [showActiveUserData, props.activeUserId, props.user.id])
 
 
     return (
