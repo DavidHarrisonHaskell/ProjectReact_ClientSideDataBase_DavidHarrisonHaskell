@@ -38,10 +38,25 @@ margin-left: 80px;
 }
 
 .newUser>span {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .newUser>span:last-child {
   /* apply to the last span that is a direct child of LeftSideChild */
   margin-bottom: 0px;
+}
+
+
+.AddButtonNewUser,
+.CancelButtonNewUser {
+    background-color: yellow;
+    border: lightblue 1px solid;
+    color: black;
+    text-align: center;
+    margin-left: auto;
+    cursor: pointer;
+    padding: 2px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    width: 70px
 }

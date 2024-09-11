@@ -50,8 +50,8 @@ const RightSideComponent = (props) => {
                 <input type="text" />
               </span>
               <div className="inputContainerRightButtons">
-                <button className="CancelButton" onClick={() => props.callback_newUser(false)}>Cancel</button>
-                <button className="AddButton" onClick={() => props.callback_newUser(false)}>Add</button>
+                <button className="CancelButtonNewUser" onClick={() => props.callback_newUser(false)}>Cancel</button>
+                <button className="AddButtonNewUser" onClick={() => props.callback_newUser(false)}>Add</button>
               </div>
             </div>
 

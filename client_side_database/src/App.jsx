@@ -103,6 +103,7 @@ const App = () => {
             callback_todoAdded={addNewTodo}
             callback_cancelNewTodo={() => setShowNewTodo(false)}
             callback_postAdded={addNewPost}
+            callback_newUser={handleNewUser}
           />
         </div>
       )}
