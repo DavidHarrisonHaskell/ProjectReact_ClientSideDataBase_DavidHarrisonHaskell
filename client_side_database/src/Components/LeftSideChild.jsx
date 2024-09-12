@@ -33,8 +33,7 @@ const LeftSideChild = (props) => {
         setStreet(props.user.address.street)
         setCity(props.user.address.city)
         setZipCode(props.user.address.zipcode)
-
-    }, [])
+    }, [props.user])
 
     const showOtherData = () => {
         setShowData(true);

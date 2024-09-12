@@ -11,22 +11,26 @@ const LeftSideParent = (props) => {
     const [activeUserId, setActiveUserId] = useState(null);
     const [initialFetchDone, setInitialFetchDone] = useState(false);
     const [newUser, setNewUser] = useState(false); // New state to manage the visibility of the "New User" window
-    // const [showRightSide, setShowRightSide] = useState(false); // used to show the right side of the application
 
 
-    useEffect(() => { //  fetches the data
-        const fetchData = async () => {
+    useEffect(() => {
+        const fetchDataUsers = async () => { //  fetches the data of the users
             const { data: usersData } = await getAllUsers()
+            console.log("usersData", usersData)
             setUsers(usersData)
+        }
+        fetchDataUsers()
+        const fetchDataTodos = async () => { //  fetches the data of the todos
             const { data: todosData } = await getAlltodos()
             setTodos(todosData)
-            // console.log("todosData: ", todosData)  
+        }
+        fetchDataTodos()
+        const fetchDataPosts = async () => { //  fetches the data of the posts
             const { data: postsData } = await getAllposts()
             setPosts(postsData)
-            setInitialFetchDone(true)
         }
-        fetchData()
-        console.log("LeftSideParent initial fetch")
+        fetchDataPosts()
+        setInitialFetchDone(true)
     }, [])
 
 
@@ -44,7 +48,7 @@ const LeftSideParent = (props) => {
                 // console.log("props.user_todos", props.user_todos, "props.user_Id", props.user_Id)
                 // console.log("todos", todos)
             } else {
-                console.log("new Todo not added")
+                // console.log("new Todo not added")
                 let specificUserTodos = todos.map(todo => { //  maps through the todos
                     if (todo.userId === props.user_Id) { //  checks if the user id of the todo is equal to the user id of the user
                         const updatedTodo = props.user_todos.find(user_todo => user_todo.id === todo.id) //  finds the todo that has the same id as the todo
@@ -63,7 +67,7 @@ const LeftSideParent = (props) => {
                 const updatedPosts = [...posts, newPost]
                 setPosts(updatedPosts)
             } else {
-                console.log("new Post not added")
+                // console.log("new Post not added")
                 let specificUserPosts = posts.map(post => { //  maps through the posts
                     if (post.userId === props.user_Id) { //  checks if the user id of the post is equal to the user id of the user
                         const updatedPost = props.user_posts.find(user_post => user_post.id === post.id) //  finds the post that has the same id as the post
@@ -108,14 +112,32 @@ const LeftSideParent = (props) => {
             props.callback_allPosts(posts)
         }
         updateUsers()
+
     }, [users, todos, posts])
+
+    useEffect(() => {
+        const updateUsersWithNewUser = () => {
+            const newUserInformation = props.newUserInformation
+            const updatedUsers = [...users, newUserInformation]
+            setUsers(updatedUsers)
+            // console.log("new user added")
+            // console.log("updatedUsers", upda1`tedUsers)
+        }
+        if (initialFetchDone) {
+            updateUsersWithNewUser()
+        } else {
+            console.log("initial fetch not done")
+        }
+    }, [props.newUserInformation])
+
 
     const handleNewUser = () => {
         setActiveUserId(null)
         props.callback_showActiveUserData(false)
         setNewUser(true);
+        props.callback_newUser(true)
     }
-    
+
     const callback_handleNewUser = (newUser) => {
         setNewUser(newUser)
     }
@@ -133,9 +155,8 @@ const LeftSideParent = (props) => {
             <button className="backgroundButton" onClick={handleNewUser}>Add</button>
             {
                 filteredUsers.map((user) => {
-                    const userPosts = posts.filter(post => post.userId === user.id)
-
-                    const userTodos = todos.filter(todo => todo.userId === user.id)
+                    const userPosts = posts.filter(post => post.userId == user.id)
+                    const userTodos = todos.filter(todo => todo.userId == user.id)
 
                     return (<LeftSideChild
                         key={user.id}

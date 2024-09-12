@@ -34,7 +34,7 @@ const RightSideChild_Posts = (props) => {
             setNewPost(!newPost)
         }
     }
-
+    
 
     return (
         <div className="RightSideChild_Posts">

@@ -15,6 +15,7 @@ const App = () => {
   const [allTodos, setAllTodos] = useState([])
   const [allPosts, setAllPosts] = useState([])
   const [newUser, setNewUser] = useState(false)
+  const [newUserInformation, setNewUserInformation] = useState({})
 
   // useEffect(() => {
   //   localStorage.clear()
@@ -49,13 +50,13 @@ const App = () => {
 
   const handleAllUsers = (users) => {
     setUsers(users)
-    console.log("test run", users)
+    // console.log("test run", users)
   }
 
   const handleAllTodos = (allTodos) => {
     setAllTodos(allTodos)
   }
-
+ 
   const handleAllPosts = (allPosts) => {
     setAllPosts(allPosts)
   }
@@ -65,10 +66,27 @@ const App = () => {
     setUser_posts(updatedPosts)
   }
 
-  const handleNewUser = (newUser) => {
+  const handleNewUserRightSide = (newUser) => {
+    console.log("handleNewUserRightSide value of newUser: ", newUser)
     setNewUser(newUser)
   }
 
+  
+  const handleNewUserLeftSide = (newUser) => {
+    console.log("handleNewUserLeftSide value of newUser: ", newUser)
+    setNewUser(newUser)
+  }
+
+  const handleAddNewUserRightSide = (newUser) => {
+    console.log("handleAddNewUserRightSide value of newUser: ", newUser)
+    setNewUserInformation(newUser)
+  }
+
+  useEffect(() => {
+    console.log("New User Information: ", newUserInformation)
+  }
+  , [newUserInformation])
+  
   return (
     <div className="AppAppearance">
       {/* <button onclick={test}>Click</button>  */}
@@ -78,7 +96,8 @@ const App = () => {
           user_todos={user_todos}
           user_posts={user_posts}
           showActiveUserData={showActiveUserData}
-          callback_newUser={handleNewUser}
+          newUserInformation={newUserInformation}
+          callback_newUser={handleNewUserLeftSide}
           callback_displayRightSide={displayRightSide}
           callback_allUsers={handleAllUsers}
           callback_allTodos={handleAllTodos}
@@ -103,7 +122,8 @@ const App = () => {
             callback_todoAdded={addNewTodo}
             callback_cancelNewTodo={() => setShowNewTodo(false)}
             callback_postAdded={addNewPost}
-            callback_newUser={handleNewUser}
+            callback_newUser={handleNewUserRightSide}
+            callback_addNewUser={handleAddNewUserRightSide}
           />
         </div>
       )}
