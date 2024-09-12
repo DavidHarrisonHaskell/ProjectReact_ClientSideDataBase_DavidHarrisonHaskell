@@ -14,8 +14,15 @@ const RightSideComponent = (props) => {
       return
     } else {
       props.callback_newUser(false)
+      let newUser_id = 0 
+      if (props.allUsers[props.allUsers.length - 1]?.id == undefined) {
+        newUser_id = 11
+      } else {
+        newUser_id = props.allUsers[props.allUsers.length - 1].id + 1
+      }
+      
       const newUser = {
-        id: props.allUsers[props.allUsers.length - 1].id + 1,
+        id: newUser_id,
         name: newUserName,
         email: newUserEmail,
         address: {
@@ -24,6 +31,7 @@ const RightSideComponent = (props) => {
           zipcode: ""
         }
       }
+
       props.callback_addNewUser(newUser)
   }
 }

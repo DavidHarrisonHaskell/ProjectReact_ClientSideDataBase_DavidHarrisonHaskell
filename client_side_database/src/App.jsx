@@ -53,25 +53,17 @@ const App = () => {
   }
 
   const handleNewUserRightSide = (newUser) => {
-    console.log("handleNewUserRightSide value of newUser: ", newUser)
     setNewUser(newUser)
   }
 
 
   const handleNewUserLeftSide = (newUser) => {
-    console.log("handleNewUserLeftSide value of newUser: ", newUser)
     setNewUser(newUser)
   }
 
   const handleAddNewUserRightSide = (newUser) => {
-    console.log("handleAddNewUserRightSide value of newUser: ", newUser)
     setNewUserInformation(newUser)
   }
-
-  useEffect(() => {
-    console.log("New User Information: ", newUserInformation)
-  }
-    , [newUserInformation])
 
   return (
     <div className="AppAppearance">

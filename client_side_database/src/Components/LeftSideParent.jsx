@@ -16,7 +16,6 @@ const LeftSideParent = (props) => {
     useEffect(() => {
         const fetchDataUsers = async () => { //  fetches the data of the users
             const { data: usersData } = await getAllUsers()
-            console.log("usersData", usersData)
             setUsers(usersData)
         }
         fetchDataUsers()
@@ -115,8 +114,6 @@ const LeftSideParent = (props) => {
         }
         if (initialFetchDone) {
             updateUsersWithNewUser()
-        } else {
-            console.log("initial fetch not done")
         }
     }, [props.newUserInformation])
 
