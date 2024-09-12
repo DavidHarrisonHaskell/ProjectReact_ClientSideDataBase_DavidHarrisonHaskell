@@ -17,18 +17,7 @@ const App = () => {
   const [newUser, setNewUser] = useState(false)
   const [newUserInformation, setNewUserInformation] = useState({})
 
-  // useEffect(() => {
-  //   localStorage.clear()
-  // }, [])
-
-  // useEffect(() => {
-  //   const savedTodos = JSON.parse(localStorage.getItem(`user_${user_Id}_todos`)) || [] // Get the user's todos from the local storage
-  //   // or an empty array if there are no todos saved
-  //   setUser_todos(savedTodos)
-  // }, [user_Id])
-
   const displayRightSide = (showActiveUserData, user_Id, user_todos, user_posts) => {
-    // setRightSideValue(RightSideValue) //!!!!
     setShowActiveUserData(showActiveUserData)
     setUser_Id(user_Id)
     setUser_todos(user_todos)
@@ -39,24 +28,21 @@ const App = () => {
   const update_user_todos = (todoId) => {
     const newTodos = user_todos.map(todo => todo.id === todoId ? { ...todo, completed: true } : todo)
     setUser_todos(newTodos)
-    // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(newTodos)) // Save the user's todos in the local storage
   }
 
   const addNewTodo = (newTodo) => {
     const updatedTodos = [...user_todos, newTodo]
     setUser_todos(updatedTodos)
-    // localStorage.setItem(`user_${user_Id}_todos`, JSON.stringify(updatedTodos)) // Save the user's todos in the local storage
   }
 
   const handleAllUsers = (users) => {
     setUsers(users)
-    // console.log("test run", users)
   }
 
   const handleAllTodos = (allTodos) => {
     setAllTodos(allTodos)
   }
- 
+
   const handleAllPosts = (allPosts) => {
     setAllPosts(allPosts)
   }
@@ -71,7 +57,7 @@ const App = () => {
     setNewUser(newUser)
   }
 
-  
+
   const handleNewUserLeftSide = (newUser) => {
     console.log("handleNewUserLeftSide value of newUser: ", newUser)
     setNewUser(newUser)
@@ -85,11 +71,10 @@ const App = () => {
   useEffect(() => {
     console.log("New User Information: ", newUserInformation)
   }
-  , [newUserInformation])
-  
+    , [newUserInformation])
+
   return (
     <div className="AppAppearance">
-      {/* <button onclick={test}>Click</button>  */}
       <div className="leftSide">
         <LeftSideParent
           user_Id={user_Id}
@@ -105,8 +90,6 @@ const App = () => {
           callback_showActiveUserData={setShowActiveUserData}
         />
       </div>
-      {/* {RightSideValue && ( */}
-      {/* {showActiveUserData && ( !!!! */}
       {(
         <div className="rightSide">
           <RightSideParent
@@ -127,28 +110,6 @@ const App = () => {
           />
         </div>
       )}
-
-      {/* {
-        newUser && (
-          <div className='rightSide'>
-            <label className="newUserLabel"> Add New User</label>
-            <div className="newUser">
-              <span>
-                <label>Name:</label>&nbsp;
-                <input type="text" />
-              </span>
-              <span>
-                <label>Email:</label>&nbsp;
-                <input type="text" />
-              </span>
-              <div className="inputContainerRightButtons">
-                <button className="CancelButton" onClick={() => setNewUser(false)}>Cancel</button>
-                <button className="AddButton" onClick={() => setNewUser(false)}>Add</button>
-              </div>
-            </div>
-          </div>
-        )
-      } */}
     </div>
   )
 }

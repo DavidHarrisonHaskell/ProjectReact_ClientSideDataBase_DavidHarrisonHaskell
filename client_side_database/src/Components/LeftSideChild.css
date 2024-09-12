@@ -9,11 +9,13 @@
     padding: 10px;
 }
 
-.LeftSideChild > span { /* apply to all spans that are direct children of LeftSideChild */
+.LeftSideChild>span {
+    /* apply to all spans that are direct children of LeftSideChild */
     margin-bottom: 10px;
 }
 
-.LeftSideChild > span:last-child { /* apply to the last span that is a direct child of LeftSideChild */
+.LeftSideChild>span:last-child {
+    /* apply to the last span that is a direct child of LeftSideChild */
     margin-bottom: 0;
 }
 
@@ -54,7 +56,8 @@
     display: flex;
     gap: 10px;
     margin-left: auto;
-    flex-grow: 1; /* grow to take up the space */
+    flex-grow: 1;
+    /* grow to take up the space */
     justify-content: flex-end;
 }
 
@@ -76,33 +79,38 @@
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 20px;
-    width: 100%; 
-    max-width: 90%; 
-    margin: 0 auto; /* center the div*/
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    /* center the div*/
     border: black 1px solid;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     padding: 10px;
     padding-left: 15px;
     cursor: pointer;
 }
 
-.OtherData label{
+.OtherData label {
     width: 35px;
-    white-space: nowrap; /* keep the text on one line */ 
+    white-space: nowrap;
+    /* keep the text on one line */
     cursor: pointer;
 }
 
 .OtherData input {
-    cursor: text; /* remove the cursor */
+    cursor: text;
+    /* remove the cursor */
 }
 
-.OtherData span{
+.OtherData span {
     display: flex;
-    margin-bottom: 10px; /* space between the spans */
+    margin-bottom: 10px;
+    /* space between the spans */
 }
 
-.OtherData span:last-child{
-    margin-bottom: 0; /* remove the space between the last span and the button */
+.OtherData span:last-child {
+    margin-bottom: 0;
+    /* remove the space between the last span and the button */
 }
 
 .blueUnderline {

@@ -16,16 +16,9 @@ const LeftSideChild = (props) => {
     const [isFirstRender, setIsFirstRender] = useState(true); // used to check if it is the first render
     const borderClassName = props.condition(props.user.id) ? "LeftSideChild borderRed" : "LeftSideChild borderGreen"; //  checks the border color condition
     const [showActiveUserData, setShowActiveUserData] = useState(false); // used to show the active user's data
-    // if the condition is true, the border color is red, else, the border color is green
 
-    // const backgroundColor = props.activeUserId === props.user.id && showRightSide ? "orangeBackground" : ""; // !!!!
     const backgroundColorCondition = props.activeUserId === props.user.id && props.showActiveUserData
     const backgroundColor = backgroundColorCondition ? "orangeBackground" : "";
-
-    
-    // console.log("TODOS for USERID: ",props.user.id," ",props.userTodos)
-    // console.log("POSTS for USERID:", props.user.id," ", props.userPosts)
-    // the console.log statements above are used to check the todos and posts for each user
 
     useEffect(() => {
         setName(props.user.name);
@@ -41,13 +34,10 @@ const LeftSideChild = (props) => {
     }
 
     const hideOtherData = (event) => {
-        //  Hides other data and sets the street, city, and zip code based on the user's address.
-
         // if the target is an input, then return
         if (event.target.tagName === "INPUT") {
             return;
         }
-        // else, hide the other data and set the street, city, and zip code based on the user's original address
         setStreet(props.user.address.street)
         setCity(props.user.address.city)
         setZipCode(props.user.address.zipcode)
@@ -77,58 +67,23 @@ const LeftSideChild = (props) => {
 
     const handleUser = () => {
         if (props.activeUserId === props.user.id) {
-            // setShowRightSide(prevState => !prevState) //!!!!
             if (props.activeUserId !== null) {
-            setShowActiveUserData(prevState => !prevState)
+                setShowActiveUserData(prevState => !prevState)
             } else {
                 setShowActiveUserData(true)
             }
             props.callback_newUser(false)
         } else {
-            // setShowRightSide(true) //!!!!
             setShowActiveUserData(true)
             props.callback_newUser(false)
         }
-        // if (!backgroundColorCondition) {
-        //     setShowActiveUserData(true)
-        // }
         props.callback_activeUserId(props.user.id);
     }
 
-    // useEffect(() => {
-    //     if (props.activeUserId !== props.user.id) {
-    //         setOrangeBackground(false)
-    //     }
-    // }, [showRightSide, props.user.id])
-
-    // useEffect(() => {
-    //     if (!isFirstRender && props.activeUserId !== props.user.id) {
-    //         setShowRightSide(true)
-    //         setOrangeBackground(!orangeBackground)
-    //     }
-    // }, [props.activeUserId, isFirstRender])
-
-    // useEffect(() => {
-    //     setIsFirstRender(true);
-    // }, [])
-
-    // useEffect(() => {
-    //     if (props.activeUserId !== props.user.id) {
-    //         setOrangeBackground(false)
-    //     }
-    // }, [props.activeUserId])
-
-    // useEffect(() => {
-    //     setShowRightSide(true)
-    // }, [props.user.id])
-
-
     useEffect(() => { //  displays the right side of the application
         if (props.activeUserId === props.user.id) {
-            // props.callback_displayRightSide(showRightSide, props.user.id, props.userTodos, props.userPosts); //!!!!
             props.callback_displayRightSide(showActiveUserData, props.user.id, props.userTodos, props.userPosts);
         }
-    // }, [showRightSide, props.activeUserId, props.user.id]) //!!!!
     }, [showActiveUserData, props.activeUserId, props.user.id])
 
 

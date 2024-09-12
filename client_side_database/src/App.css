@@ -20,10 +20,6 @@
 .leftSide,
 .rightSide {
     flex: 1;
-    /* take up the same amount of space */
-    /* overflow: auto; */
-    /* contain the floated children */
-    /* box-sizing: border-box;  */
     max-width: 48%;
     padding: 10px;
     overflow: auto;

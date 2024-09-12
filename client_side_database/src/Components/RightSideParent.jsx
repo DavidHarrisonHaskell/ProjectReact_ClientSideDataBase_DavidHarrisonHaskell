@@ -19,19 +19,15 @@ const RightSideComponent = (props) => {
         name: newUserName,
         email: newUserEmail,
         address: {
-          street: "", //  street
-          city: "", //  city
-          zipcode: "" //  zip code
+          street: "",
+          city: "",
+          zipcode: ""
         }
       }
       props.callback_addNewUser(newUser)
   }
 }
 
-    // const testRightSide = () => {
-    //   console.log(" User_Id: ", props.user_Id, " User_Todos: ", props.user_todos, " User_Posts: ", props.user_posts)
-
-    // }
     const callback_markCompleted = (todoId) => {
       props.callback_markCompleted(todoId)
     }
@@ -44,16 +40,10 @@ const RightSideComponent = (props) => {
       props.callback_postAdded(newPost)
     }
 
-    // const addNewUser = () => {
-    //   props.callback_newUser(false)
-    // }
-
     return (
 
       <div className="right-side">
-        {/* <button onClick={testRightSide}>Test Right</button><br /> */}
         {
-
           props.newUser && !props.showActiveUserData && ( //  if the new user is true, display the new user component
             <>
               <label className="newUserLabel"> Add New User</label>
