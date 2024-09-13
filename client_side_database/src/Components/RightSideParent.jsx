@@ -20,7 +20,7 @@ const RightSideComponent = (props) => {
       } else {
         newUser_id = props.allUsers[props.allUsers.length - 1].id + 1
       }
-      
+
       const newUser = {
         id: newUser_id,
         name: newUserName,
