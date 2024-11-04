@@ -2,7 +2,7 @@
  <u>A React project focused on managing a database on the client side</u>
  
 ## Demo
-[![Image ALT TEXT HERE](https://youtube.com/vi/4R56h4WQupY/0.jpg)](https://youtube.com/watch?v=4R56h4WQupY)
+[![Image ALT TEXT HERE](https://img.youtube.com/vi/4R56h4WQupY/0.jpg)](https://youtube.com/watch?v=4R56h4WQupY)
 
 
 ## Introduction
